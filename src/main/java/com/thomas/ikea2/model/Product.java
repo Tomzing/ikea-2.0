@@ -9,18 +9,18 @@ import jakarta.persistence.Id;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
 
     private String description;
 
-    private Integer price;
+    private int price;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
     //Under normal circumstances, should not be used
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -32,11 +32,11 @@ public class Product {
         this.description = description;
     }
 
-    public Integer getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 }
