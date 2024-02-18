@@ -3,6 +3,7 @@ package com.thomas.ikea2.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="category_furniture")
 public class CategoryFurniture {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,7 +15,7 @@ public class CategoryFurniture {
     private float weight;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="product_id")
+    @JoinColumn(name="product_id", referencedColumnName = "id")
     private Product product;
 
     public int getId() {
@@ -39,6 +40,14 @@ public class CategoryFurniture {
 
     public void setWeight(float weight) {
         this.weight = weight;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public CategoryFurniture(int itemNumber, float weight, Product product) {
