@@ -1,11 +1,10 @@
 package com.thomas.ikea2.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -36,12 +35,12 @@ public class Order {
         this.date = date;
     }
 
-    public Set<Product> getProductSet() {
-        return productSet;
+    public List<Product> getProductList() {
+        return productList;
     }
 
-    public void setProductSet(Set<Product> productSet) {
-        this.productSet = productSet;
+    public void setProductSet(List<Product> productList) {
+        this.productList = productList;
     }
 
     public float getOrderTotal() {
@@ -66,7 +65,8 @@ public class Order {
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    Set<Product> productSet = new HashSet<>();
+    List<Product> productList = new ArrayList<>();
+
 
 
 

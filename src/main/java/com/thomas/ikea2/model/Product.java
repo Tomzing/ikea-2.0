@@ -3,7 +3,9 @@ package com.thomas.ikea2.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -91,8 +93,8 @@ public class Product {
     }
 
 
-    @ManyToMany(mappedBy = "productSet")
-    Set<Order> orderSet = new HashSet<>();
+    @ManyToMany(mappedBy = "productList")
+    List<Order> orderList = new ArrayList<>();
 
     public Product(String name, String description, int price) {
         this.name = name;

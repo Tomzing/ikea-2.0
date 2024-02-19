@@ -2,13 +2,10 @@ package com.thomas.ikea2;
 
 import com.thomas.ikea2.model.*;
 import com.thomas.ikea2.repository.*;
-import com.thomas.ikea2.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.List;
 
 @SpringBootApplication
 public class Ikea2Application implements CommandLineRunner {
@@ -46,23 +43,17 @@ public class Ikea2Application implements CommandLineRunner {
 		textilesRepository.save(productTextile1);
 		
 		Order order1 = new Order();
-		order1.getProductSet().add(productHotdog1.getProduct());
-		order1.getProductSet().add(productHotdog2.getProduct());
+		order1.getProductList().add(productHotdog1.getProduct());
+		order1.getProductList().add(productHotdog2.getProduct());
 		order1.setOrderTotal(productHotdog1.getProduct().getPrice());
 		orderRepository.save(order1);
 
 		Order order2 = new Order();
-		order2.getProductSet().add(productFurniture1.getProduct());
+		order2.getProductList().add(productFurniture1.getProduct());
+		order2.getProductList().add(productTextile1.getProduct());
 		order2.setOrderTotal(productFurniture1.getProduct().getPrice());
 		orderRepository.save(order2);
 
-		Order order = new OrderService(orderRepository).getOrderById(1);
-		System.out.println("Skvadala " + order.getOrderTotal());
-
-		List<Order> listOfAllOrders = new OrderService(orderRepository).getAllOrders();
-		System.out.println(listOfAllOrders.get(0).getId());
-
-		//System.out.println("Super test " + productsOrderedRepository.findAll());
 
 	}
 }
