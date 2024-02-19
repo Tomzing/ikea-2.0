@@ -1,5 +1,6 @@
 package com.thomas.ikea2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -8,6 +9,11 @@ import java.util.Set;
 @Entity
 @Table(name="product")
 public class Product {
+
+    public Product() {
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
@@ -92,5 +98,10 @@ public class Product {
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product " + this.name + " price " + this.price;
     }
 }

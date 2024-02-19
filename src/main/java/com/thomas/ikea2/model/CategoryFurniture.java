@@ -5,6 +5,11 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="category_furniture")
 public class CategoryFurniture {
+
+    public CategoryFurniture() {
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -56,7 +61,5 @@ public class CategoryFurniture {
         this.product = product;
     }
 
-    public CategoryFurniture() {
-        super();
-    }
+
 }

@@ -5,6 +5,11 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="category_food")
 public class CategoryFood {
+
+    public CategoryFood() {
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
