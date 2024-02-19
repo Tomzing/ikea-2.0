@@ -1,11 +1,10 @@
 package com.thomas.ikea2;
 
-import com.thomas.ikea2.model.CategoryFood;
-import com.thomas.ikea2.model.CategoryFurniture;
-import com.thomas.ikea2.model.CategoryTextiles;
-import com.thomas.ikea2.model.Product;
+import com.thomas.ikea2.model.*;
 import com.thomas.ikea2.repository.CategoryFoodRepository;
 import com.thomas.ikea2.repository.CategoryFurnitureRepository;
+import com.thomas.ikea2.repository.CategoryTextilesRepository;
+import com.thomas.ikea2.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,8 +24,13 @@ public class Ikea2Application implements CommandLineRunner {
 	@Autowired
 	CategoryFurnitureRepository furnitureRepository;
 
-	//@Autowired
-	//CategoryTextiles textilesRepository;
+	@Autowired
+	CategoryTextilesRepository textilesRepository;
+
+	@Autowired
+	OrderRepository orderRepository;
+
+
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -38,6 +42,19 @@ public class Ikea2Application implements CommandLineRunner {
 
 		CategoryFurniture productFurniture1 = new CategoryFurniture(1, 2.51F, new Product("Cat shaped shelf", "For all your feline needs", 200));
 		furnitureRepository.save(productFurniture1);
+
+		CategoryTextiles productTextile1 = new CategoryTextiles(444,"black", new Product("Night rug","A pitch black rug, beware black cats on it", 100));
+		textilesRepository.save(productTextile1);
+		
+		Order order1 = new Order();
+		order1.getProductSet().add(productHotdog1.getProduct());
+		order1.setOrderTotal(productHotdog1.getProduct().getPrice());
+		orderRepository.save(order1);
+
+		Order order2 = new Order();
+		order2.getProductSet().add(productFurniture1.getProduct());
+		order2.setOrderTotal(productFurniture1.getProduct().getPrice());
+		orderRepository.save(order2);
 
 	}
 }

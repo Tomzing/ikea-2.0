@@ -3,11 +3,16 @@ package com.thomas.ikea2.model;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     public int getId() {
         return id;
@@ -16,6 +21,7 @@ public class Order {
     public void setId(int id) {
         this.id = id;
     }
+
 
     public Date getDate() {
         return date;
@@ -33,11 +39,21 @@ public class Order {
         this.productSet = productSet;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    public float getOrderTotal() {
+        return orderTotal;
+    }
 
+    public void setOrderTotal(float orderTotal) {
+        this.orderTotal = orderTotal;
+    }
+
+    @Column(name = "order_total")
+    private float orderTotal = 0;
+
+    @Column(name = "order_date")
     private Date date = new Date();
+
+
 
     @ManyToMany
     @JoinTable(
@@ -45,7 +61,7 @@ public class Order {
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    Set<Product> productSet;
+    Set<Product> productSet = new HashSet<>();
 
 
 }

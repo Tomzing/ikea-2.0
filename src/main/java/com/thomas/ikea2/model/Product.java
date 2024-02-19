@@ -2,6 +2,9 @@ package com.thomas.ikea2.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name="product")
 public class Product {
@@ -80,6 +83,10 @@ public class Product {
     public void setPrice(int price) {
         this.price = price;
     }
+
+
+    @ManyToMany(mappedBy = "productSet")
+    Set<Order> orderSet = new HashSet<>();
 
     public Product(String name, String description, int price) {
         this.name = name;
