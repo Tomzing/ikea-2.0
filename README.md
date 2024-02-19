@@ -32,3 +32,4 @@ JDBC URL: "jdbc:h2:mem:memDb"
 username: "sa"
 
 
+Proposed UML: https://i.imgur.com/s705bNt.png
