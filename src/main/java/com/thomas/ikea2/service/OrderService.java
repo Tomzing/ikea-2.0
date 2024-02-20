@@ -36,8 +36,10 @@ public class OrderService implements OrderServiceInterface {
         }
         System.out.println("Total price: " + orderTotal);
 
+
         //Vet at get callet failer på serialisering til json, println returnerer riktig :)
         Optional<Order> optionalOrder = orderRepository.findById(id);
+        optionalOrder.get().setOrderTotal(orderTotal);
         return optionalOrder.orElse(null);
     }
 
